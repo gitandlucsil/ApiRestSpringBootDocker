@@ -1,6 +1,9 @@
-package and.luc.sil.ApiRestSpringBootDocker.math;
+package and.luc.sil.ApiRestSpringBootDocker.services;
 
-public class SimpleMath {
+import org.springframework.stereotype.Service;
+
+@Service
+public class MathService {
 
 	public Double sum(Double firstNumber, Double secondNumber) {
 		return firstNumber + secondNumber;

@@ -1,8 +1,11 @@
-package and.luc.sil.ApiRestSpringBootDocker.converters;
+package and.luc.sil.ApiRestSpringBootDocker.services;
 
-public class NumberConverter {
+import org.springframework.stereotype.Service;
 
-	public static Double convertToDouble(String number) {
+@Service
+public class NumberConverterService {
+
+	public Double convertToDouble(String number) {
         if (number == null) {
         	return 0d; 
         }
@@ -13,7 +16,7 @@ public class NumberConverter {
         return 0d;
 	}
 
-	public static boolean isNumeric(String number) {
+	public boolean isNumeric(String number) {
 		if(number == null) {
 			return false;
 		}
