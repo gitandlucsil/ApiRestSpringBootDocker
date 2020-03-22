@@ -1,32 +1,24 @@
-package and.luc.sil.ApiRestSpringBootDocker.model;
+package and.luc.sil.apirestspringbootdocker.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Entity
-@Table(name="person")
-public class Person implements Serializable{
+public class PersonV2 implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	@Column(name="first_name", nullable = false, length=80)
 	private String firstName;
-	@Column(name="last_name", nullable = false, length=80)
 	private String lastName;
-	@Column(name="address", nullable = false, length=100)
 	private String address;
-	@Column(name="gender", nullable = false, length=6)
 	private String gender;
+	private Date birthday;
 	
-	public Person() {
+	public PersonV2() {
 	}
 
 	public long getId() {
@@ -69,11 +61,20 @@ public class Person implements Serializable{
 		this.gender = gender;
 	}
 
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
+		result = prime * result + ((birthday == null) ? 0 : birthday.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
@@ -89,11 +90,16 @@ public class Person implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Person other = (Person) obj;
+		PersonV2 other = (PersonV2) obj;
 		if (address == null) {
 			if (other.address != null)
 				return false;
 		} else if (!address.equals(other.address))
+			return false;
+		if (birthday == null) {
+			if (other.birthday != null)
+				return false;
+		} else if (!birthday.equals(other.birthday))
 			return false;
 		if (firstName == null) {
 			if (other.firstName != null)
@@ -114,5 +120,5 @@ public class Person implements Serializable{
 			return false;
 		return true;
 	}
-
+	
 }

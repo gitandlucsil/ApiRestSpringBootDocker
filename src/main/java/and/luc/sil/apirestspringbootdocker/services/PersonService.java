@@ -1,4 +1,4 @@
-package and.luc.sil.ApiRestSpringBootDocker.services;
+package and.luc.sil.apirestspringbootdocker.services;
 
 import java.util.List;
 
@@ -6,14 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
-import and.luc.sil.ApiRestSpringBootDocker.model.Person;
-import and.luc.sil.ApiRestSpringBootDocker.repository.PersonRepository;
+import and.luc.sil.apirestspringbootdocker.converter.PersonConverter;
+import and.luc.sil.apirestspringbootdocker.model.Person;
+import and.luc.sil.apirestspringbootdocker.model.PersonV2;
+import and.luc.sil.apirestspringbootdocker.repository.PersonRepository;
 
 @Service
 public class PersonService {
 
 	@Autowired
 	PersonRepository repository;
+	@Autowired
+	PersonConverter converter;
 	
 	public Person findById(Long id) {
 		return repository.findById(id).orElseThrow(()-> new ResourceNotFoundException("No record found for this id!"));
@@ -25,6 +29,12 @@ public class PersonService {
 	
 	public Person create(Person person) {
 		return repository.save(person);
+	}
+	
+	public PersonV2 createV2(PersonV2 person) {
+		Person entity = converter.convertV2ToEntity(person);
+		PersonV2 v2 = converter.convertEntityToV2(repository.save(entity));
+		return v2;
 	}
 	
 	public Person update(Person person) {

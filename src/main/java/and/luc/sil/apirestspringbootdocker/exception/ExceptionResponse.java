@@ -1,4 +1,4 @@
-package and.luc.sil.ApiRestSpringBootDocker.exception;
+package and.luc.sil.apirestspringbootdocker.exception;
 
 import java.io.Serializable;
 import java.util.Date;

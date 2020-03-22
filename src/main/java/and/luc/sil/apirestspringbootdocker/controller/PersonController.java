@@ -1,4 +1,4 @@
-package and.luc.sil.ApiRestSpringBootDocker.controller;
+package and.luc.sil.apirestspringbootdocker.controller;
 
 import java.util.List;
 
@@ -13,8 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import and.luc.sil.ApiRestSpringBootDocker.model.Person;
-import and.luc.sil.ApiRestSpringBootDocker.services.PersonService;
+import and.luc.sil.apirestspringbootdocker.model.Person;
+import and.luc.sil.apirestspringbootdocker.model.PersonV2;
+import and.luc.sil.apirestspringbootdocker.services.PersonService;
 
 @RestController
 @RequestMapping("/person")
@@ -33,12 +34,19 @@ public class PersonController {
 		return personservice.findAll();
 	}
 	
-	@PostMapping()
+	@PostMapping
 	public Person create(@RequestBody Person person) {
+		System.out.println("Caiu no post");
 		return personservice.create(person);
 	}
 	
-	@PutMapping()
+	@PostMapping("/v2")
+	public PersonV2 createV2(@RequestBody PersonV2 person) {
+		return personservice.createV2(person);
+	}
+	
+	
+	@PutMapping
 	public Person update(@RequestBody Person person) {
 		return personservice.update(person);
 	}	

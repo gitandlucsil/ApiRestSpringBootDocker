@@ -1,4 +1,4 @@
-package and.luc.sil.ApiRestSpringBootDocker.exception.handler;
+package and.luc.sil.apirestspringbootdocker.exception.handler;
 
 import java.util.Date;
 
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import and.luc.sil.ApiRestSpringBootDocker.exception.ExceptionResponse;
-import and.luc.sil.ApiRestSpringBootDocker.exception.ResourceNotFoundException;
+import and.luc.sil.apirestspringbootdocker.exception.ExceptionResponse;
+import and.luc.sil.apirestspringbootdocker.exception.ResourceNotFoundException;
 
 @ControllerAdvice
 @RestController

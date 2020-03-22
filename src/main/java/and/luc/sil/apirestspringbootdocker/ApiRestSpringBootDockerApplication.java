@@ -1,4 +1,4 @@
-package and.luc.sil.ApiRestSpringBootDocker;
+package and.luc.sil.apirestspringbootdocker;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

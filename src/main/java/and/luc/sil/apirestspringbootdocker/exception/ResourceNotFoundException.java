@@ -1,4 +1,4 @@
-package and.luc.sil.ApiRestSpringBootDocker.exception;
+package and.luc.sil.apirestspringbootdocker.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
