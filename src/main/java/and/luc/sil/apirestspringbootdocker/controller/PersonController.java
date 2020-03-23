@@ -18,7 +18,7 @@ import and.luc.sil.apirestspringbootdocker.model.PersonV2;
 import and.luc.sil.apirestspringbootdocker.services.PersonService;
 
 @RestController
-@RequestMapping("/person")
+@RequestMapping("api/person/v1")
 public class PersonController {
 
 	@Autowired

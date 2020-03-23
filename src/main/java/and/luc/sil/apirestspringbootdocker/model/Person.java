@@ -9,16 +9,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 @Entity
 @Table(name="person")
+@JsonPropertyOrder({"id","address","firstName","lastName","gender"})
 public class Person implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	@JsonProperty("first_name")
 	@Column(name="first_name", nullable = false, length=80)
 	private String firstName;
+	@JsonProperty("last_name")
 	@Column(name="last_name", nullable = false, length=80)
 	private String lastName;
 	@Column(name="address", nullable = false, length=100)
