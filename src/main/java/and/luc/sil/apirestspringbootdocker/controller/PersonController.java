@@ -1,8 +1,12 @@
 package and.luc.sil.apirestspringbootdocker.controller;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.Link;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,18 +30,23 @@ public class PersonController {
 	
 	@GetMapping(value="/{id}",produces = {"application/json","application/xml","application/x-yaml"})
 	public Person findById(@PathVariable("id") Long id) {
-		return personservice.findById(id);
+		Person person = personservice.findById(id);
+		person.add(linkTo(methodOn(PersonController.class).findById(id)).withSelfRel());
+		return person;
 	}
 	
 	@GetMapping(produces = {"application/json","application/xml","application/x-yaml"})
 	public List<Person> findAll() {
-		return personservice.findAll();
+		List<Person> persons = personservice.findAll();
+		persons.stream().forEach(p -> p.add(linkTo(methodOn(PersonController.class).findById(p.getId())).withSelfRel()));
+		return persons;
 	}
 	
 	@PostMapping(produces = {"application/json","application/xml","application/x-yaml"},consumes = {"application/json","application/xml","application/x-yaml"})
 	public Person create(@RequestBody Person person) {
-		System.out.println("Caiu no post");
-		return personservice.create(person);
+		Person p = personservice.create(person);
+		p.add(linkTo(methodOn(PersonController.class).findById(p.getId())).withSelfRel());
+		return p;
 	}
 	
 	@PostMapping(value="/v2",produces = {"application/json","application/xml","application/x-yaml"},consumes = {"application/json","application/xml","application/x-yaml"})
@@ -48,7 +57,9 @@ public class PersonController {
 	
 	@PutMapping(produces = {"application/json","application/xml","application/x-yaml"},consumes = {"application/json","application/xml","application/x-yaml"})
 	public Person update(@RequestBody Person person) {
-		return personservice.update(person);
+		Person p = personservice.update(person);
+		p.add(linkTo(methodOn(PersonController.class).findById(p.getId())).withSelfRel());
+		return p;
 	}	
 	
 	@DeleteMapping(value="/{id}")

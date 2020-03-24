@@ -9,12 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import org.springframework.hateoas.RepresentationModel;
 
 @Entity
 @Table(name="person")
-public class Person implements Serializable{
+public class Person extends RepresentationModel<Person>  implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	@Id
