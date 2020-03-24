@@ -24,29 +24,29 @@ public class PersonController {
 	@Autowired
 	private PersonService personservice;
 	
-	@GetMapping(value="/{id}")
+	@GetMapping(value="/{id}",produces = {"application/json","application/xml","application/x-yaml"})
 	public Person findById(@PathVariable("id") Long id) {
 		return personservice.findById(id);
 	}
 	
-	@GetMapping
+	@GetMapping(produces = {"application/json","application/xml","application/x-yaml"})
 	public List<Person> findAll() {
 		return personservice.findAll();
 	}
 	
-	@PostMapping
+	@PostMapping(produces = {"application/json","application/xml","application/x-yaml"},consumes = {"application/json","application/xml","application/x-yaml"})
 	public Person create(@RequestBody Person person) {
 		System.out.println("Caiu no post");
 		return personservice.create(person);
 	}
 	
-	@PostMapping("/v2")
+	@PostMapping(value="/v2",produces = {"application/json","application/xml","application/x-yaml"},consumes = {"application/json","application/xml","application/x-yaml"})
 	public PersonV2 createV2(@RequestBody PersonV2 person) {
 		return personservice.createV2(person);
 	}
 	
 	
-	@PutMapping
+	@PutMapping(produces = {"application/json","application/xml","application/x-yaml"},consumes = {"application/json","application/xml","application/x-yaml"})
 	public Person update(@RequestBody Person person) {
 		return personservice.update(person);
 	}	
