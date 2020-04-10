@@ -3,10 +3,6 @@ package and.luc.sil.apirestspringbootdocker.model;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 public class PersonV2 implements Serializable{
 

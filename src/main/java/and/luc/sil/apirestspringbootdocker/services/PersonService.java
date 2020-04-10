@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import and.luc.sil.apirestspringbootdocker.converter.PersonConverter;
 import and.luc.sil.apirestspringbootdocker.model.Person;
@@ -44,6 +45,12 @@ public class PersonService {
 		entity.setAddress(person.getAddress());
 		entity.setGender(person.getGender());
 		return repository.save(entity);
+	}
+	
+	@Transactional
+	public Person disablePerson(Long id) {
+		repository.disablePerson(id);
+		return repository.findById(id).orElseThrow(()-> new ResourceNotFoundException("No record found for this id!"));
 	}
 	
 	public void delete(Long id) {
