@@ -3,6 +3,7 @@ package and.luc.sil.apirestspringbootdocker.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +20,9 @@ public class BookService {
 		return repository.findById(id).orElseThrow(()-> new ResourceNotFoundException("No record found for this id!"));
 	}
 	
-	public List<Book> findAll() {
-		return repository.findAll();
+	public List<Book> findAll(Pageable pageable) {
+		var entities = repository.findAll(pageable).getContent();
+		return entities;
 	}
 	
 	public Book create(Book book) {
