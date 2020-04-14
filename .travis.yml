@@ -13,7 +13,7 @@ before_deploy:
 deploy:
     provider: script
     script: 
-       docker tag api-rest-spring-boot:latest andlucsil/api-rest-spring-boot:$TRAVIS_JOB_ID
+       docker tag api-rest-spring-boot:latest  andlucsil/api-rest-spring-boot:$TRAVIS_JOB_ID;
        docker push andlucsil/api-rest-spring-boot;
     on:
       branch: master
