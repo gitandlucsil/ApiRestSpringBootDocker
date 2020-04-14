@@ -6,11 +6,6 @@ jdk:
 python:
   - "3.6"
 services: docker
-before_install:
-    - sudo apt-get update
-    - cd /ApiRestSpringBootDocker
-    - mvn clean package
-    - cd ..
 script:
     - docker-compose build
 before_deploy:
