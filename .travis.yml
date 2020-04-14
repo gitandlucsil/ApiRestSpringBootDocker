@@ -8,7 +8,7 @@ python:
 services: docker
 before_install:
     - sudo apt-get update
-    - cd ApiRestSpringBootDockerMain/ApiRestSpringBootDocker
+    - cd /ApiRestSpringBootDockerMain/ApiRestSpringBootDocker
     - mvn clean package
     - cd ..
 script:
